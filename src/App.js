@@ -10,11 +10,11 @@ import Drop from './Components/Drop.js'
 function App() {
   return (
     <div style={{paddingInline:'8rem'}}>
-    <BrowserRouter>
+    <BrowserRouter basename ="" >
       <Routes>
         {/* <Route path="/" element={<div> home </div>}/> */}
-        <Route path="/workflow" element={ <Landing /> } />
-        <Route path="/workflow/:id" element={<Drop />} />
+        <Route path="workflow" element={ <Landing /> } />
+        <Route path="workflow/:id" element={<Drop />} />
       </Routes>
     </BrowserRouter>
     </div>
