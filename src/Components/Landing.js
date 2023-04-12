@@ -46,7 +46,7 @@ function Landing() {
         <tbody>
           {workflows.map(workflow => (
             <tr key={workflow.id}> 
-             <td><Link to = {`/workflow/${workflow.id}`} state={{id:workflow.id , inputtype : workflow.input_type }} > {workflow.name} </Link></td> 
+             <td><Link to = {`/myapp/workflow/${workflow.id}`} state={{id:workflow.id , inputtype : workflow.input_type }} > {workflow.name} </Link></td> 
               <td>{workflow.input_type}</td>
               <td>{formatDate(workflow.createdAt)}</td>
             </tr>
