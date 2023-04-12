@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+body{
+  font-family: 'Rubik', sans-serif;
+}
+.landing-container {
+  /* position:fixed; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .workflow-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .workflow-table th,
+  .workflow-table td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .workflow-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .workflow-table td:first-child {
+    text-align: left;
+  }
+  

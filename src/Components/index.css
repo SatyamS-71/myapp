@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+body{
+  font-family: 'Rubik', sans-serif;
+  padding-inline:2rem;
+}
+.butn{
+  background:none;
+  border:0.5px solid rgb(75, 85, 236);
+}
+.butn:hover{
+  background-color:rgba(18, 85, 218, 0.458);
+  border:none;
+}
+.butn .val {
+padding:2rem;
+}
+.main{
+width:2rem;
+height:2rem;
+}
+.grabbable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}

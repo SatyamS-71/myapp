@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+body{
+    /* padding-inline:1rem; */
+    font-family: 'Rubik', sans-serif;
+    padding-inline:2rem;
+}
+
+.Nav{
+    width:100%;
+    padding-left: 2rem;
+    border:2px solid #6173fa;
+    border-radius: 2px;
+}

@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
+
+import Landing from './Components/Landing';
+// import WorkflowDesigner from './Components/WorkflowDesigner.js';
+import Drop from './Components/Drop.js'
+// import home from './index.html' 
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{paddingInline:'8rem'}}>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path="/" element={<div> home </div>}/> */}
+        <Route path="/workflow" element={ <Landing /> } />
+        <Route path="/workflow/:id" element={<Drop />} />
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
