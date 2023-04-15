@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -6,6 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Background,
+  getIncomers,
 } from 'reactflow';
 
 import { useLocation } from "react-router-dom";
@@ -19,7 +20,7 @@ import './index.css';
 
 
 
-let id = 2;
+let id = 1;
 const getId = () => `${id++}`;
 
 const Drop = () => {
@@ -32,14 +33,14 @@ const Drop = () => {
         fetch(`https://64307b10d4518cfb0e50e555.mockapi.io/workflow/${data.id}`)
         .then(res => res.json())
         .then(data => setpersondata(data))
-    } , []);
+    } , [] );
 
-    const nodeTypes = useMemo(() => ({ textUpdater: TextUpdaterNode }), []);
-    
+    // const nodeTypes = useMemo(() => ({ textUpdater: TextUpdaterNode }), []);
+    const nodeTypes =  {'textUpdater' : TextUpdaterNode };
     const datatopass = data;
     const initialNodes = [
         {
-          id: '1',
+          id: '0',
           type: 'textUpdater',
           data:  {
             name:'',
@@ -60,11 +61,12 @@ const Drop = () => {
   const onDragOver = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
-
   }, []);
 
-  const onDrop = useCallback(
-    (event) => {
+  // const onDrop = useCallback(
+
+const onDrop =   (event) => {
+
       event.preventDefault();
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const type = JSON.parse(event.dataTransfer.getData('application/reactflow'));
@@ -75,20 +77,21 @@ const Drop = () => {
         y: event.clientY - reactFlowBounds.top , 
       });
 
-
       const newNode = {
         id: getId(),
         type: 'textUpdater',
         position,
-        data: {...type , borderColor:'Red'},
+        data: {...type , 
+          borderColor: 'red'
+      }
       };
      
       setNodes((nds) => nds.concat(newNode));
-
-    },
-    [reactFlowInstance]
-  );
+    }
+  //   [reactFlowInstance]
+  // );
     const tempnodes = nodes;
+
     const onConnect = (params) => setEdges((eds) => {
     const {source , target} = params;
     
@@ -101,9 +104,11 @@ const Drop = () => {
       setNodes((nds => updatedElements));
     }
     return addEdge(params, eds);
-  });
-
-
+  } );
+  for(let i = 0;i<nodes.length;i++){
+    nodes[i].data.borderColor = nodes[i].id !== '0' && getIncomers(nodes[i] , nodes , edges).length === 0 ?'red':'blue';
+  }
+  
   return (
 
 <div style={{width:'100%', margin:'0'}}>
@@ -111,11 +116,9 @@ const Drop = () => {
     key = {persondata.id}
     name = {persondata.name}
     />
-    <div className="" style={{}} >
  
       <ReactFlowProvider>
-        
-        <div className="" ref={reactFlowWrapper} style={{ display:'flex' , flexDirection:'row',height:'87vh',width:'100%' , border:'2px solid  #6173fa' , boxShadow:''}}>
+      <div className="" ref={reactFlowWrapper} style={{ display:'flex' , flexDirection:'row',height:'87vh',width:'100%' , border:'2px solid  #6173fa' , boxShadow:''}}>
          <Sidebar />  
           <ReactFlow
             nodes={nodes}
@@ -135,7 +138,7 @@ const Drop = () => {
         </div>
        
       </ReactFlowProvider>
-    </div>
+    
     </div>
   );
 };
