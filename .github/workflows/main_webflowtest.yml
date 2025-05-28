@@ -55,4 +55,4 @@ jobs:
           app-name: 'webflowtest'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5C8E9D7EC16C4812B6A4FD17A6C23285 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1E4E58C0C094478897BE3DE1D9AF576D }}
